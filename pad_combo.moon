@@ -7,7 +7,7 @@ class PadCombo
 		@combo = {}
 		@combo_count = 0
 		@combo_seq = {}
-		@combo_color_count = {}  # not cure drop color
+		@combo_color_count = {}  -- not cure drop color
 		@combo_cure_count = {}
 		@score = 0
 		@adjacent = @make_adjacent!
@@ -63,13 +63,13 @@ class PadCombo
 			for col = 1, @cols
 				ary_b = {}
 				if 1 <= col - 1
-					table.insert(ary_b, xy2idx(col - 1, row))
+					table.insert(ary_b, @xy2idx(col - 1, row))
 				if col + 1 < @cols
-					table.insert(ary_b, xy2idx(col + 1, row))
+					table.insert(ary_b, @xy2idx(col + 1, row))
 				if 1 <= row - 1
-					table.insert(ary_b, xy2idx(col, row - 1))
+					table.insert(ary_b, @xy2idx(col, row - 1))
 				if row + 1 < @rows
-					table.insert(ary_b, xy2idx(col, row + 1))
+					table.insert(ary_b, @xy2idx(col, row + 1))
 			table.insert(ary, ary_b)
 		return ary
 	    -- }}}
@@ -80,7 +80,7 @@ class PadCombo
 			for col = 1, @cols
 				ary_b = {}
 				if vector == "h"  -- horizon-- {{{
-					if col + 2 =< @cols
+					if (col + 2) <= @cols
 						table.insert(ary_b, @xy2idx(col, row))
 						table.insert(ary_b, @xy2idx(col+1, row))
 						table.insert(ary_b, @xy2idx(col+2, row))
@@ -88,7 +88,7 @@ class PadCombo
 					else
 						table.insert(ary, ary_b)-- }}}
 				elseif vector == "v"  -- vertical-- {{{
-					if row + 2 =< @rows
+					if (row + 2) <= @rows
 						table.insert(ary_b, @xy2idx(col, row))
 						table.insert(ary_b, @xy2idx(col, row+1))
 						table.insert(ary_b, @xy2idx(col, row+2))
@@ -177,10 +177,10 @@ class PadCombo
 
 
 
-print "loaded pad_combo module"
-p_cmb_1 = PadCombo 3, 2, "rrrggg"
-print #p_cmb_1.board
-local lst = p_cmb_1\str2lst(p_cmb_1.board)
-print p_cmb_1\lst2str lst
+-- print "loaded pad_combo module"
+-- p_cmb_1 = PadCombo 3, 2, "rrrggg"
+-- print #p_cmb_1.board
+-- local lst = p_cmb_1\str2lst(p_cmb_1.board)
+-- print p_cmb_1\lst2str lst
 -- print p_cmb.rows
 
