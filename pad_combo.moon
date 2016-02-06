@@ -147,6 +147,36 @@ class PadCombo
 					ers += 1-- }}}
 		-- }}}
 
+    isKinsetsu: (x1, y1, v1, x2, y2, v2) =>-- {{{
+		idx1 = @xy2idx(x1, y1)
+		idx2 = @xy2idx(x2, y2)
+		if v1 == "h"-- {{{
+			for i, value in ipairs(@renketsu_h[idx1])
+				for j, value2 in ipairs(@adjacent[i])
+					if v2 == "h"
+						for i2, value3 in ipairs(@renketsu_h[idx2])
+							if value2 == value3
+								return True
+					elseif v2 == "v"
+						for i2, value3 in ipairs(@renketsu_v[idx2])
+							if value2 == value3
+								return True-- }}}
+		elseif v2 == "v"-- {{{
+			for i, value in ipairs(@renketsu_v[idx1])
+				for j, value2 in ipairs(@adjacent[i])
+					if v2 == "h"
+						for i2, value3 in ipairs(@renketsu_h[idx2])
+							if value2 == value3
+								return True
+					elseif v2 == "v"
+						for i2, value3 in ipairs(@renketsu_v[idx2])
+							if value2 == value3
+								return True-- }}}
+		return False
+		-- }}}
+
+
+
 print "loaded pad_combo module"
 p_cmb_1 = PadCombo 3, 2, "rrrggg"
 print #p_cmb_1.board
